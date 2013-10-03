@@ -88,7 +88,24 @@ namespace DayPredictor
                     MessageBox.Show("Year should be between 1900 & 2100!");
                     yearbox.Focus();
                 }
-                else { fyear = year; }
+                else {
+                    if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
+                    {
+
+                    }
+                    else
+                    {
+                        if (fmonth == 2)
+                        {
+                            if (fdate > 28)
+                            {
+                                MessageBox.Show("Enter date again!");
+                                daybox.Focus();
+                            }
+                        }
+                    }
+                    fyear = year;
+                }
             }
             catch (FormatException annu)
             {
@@ -121,15 +138,16 @@ namespace DayPredictor
                 leapyearbox.Text = "LEAP YEAR";
 
         }
+        
         private int Month(int m1,int y1)
         {
 			int days=0,m=m1,y=y1;
-            if (m > 2)
+    if (m > 2)
             {
                 if ((y % 4 == 0 && y % 100 != 0) || y % 400 == 0)
                 {
                     flag = 1;
-                    
+
                     days += 1;
                 }
 
@@ -137,8 +155,13 @@ namespace DayPredictor
             else
             {
                 flag = 0;
-                
-            }
+                if (fdate > 28)
+                {
+                    MessageBox.Show("Enter date again!");
+                    daybox.Focus();
+                }
+}
+           
 					//leap year					
 			for(int i=1;i<m;i++)
 				{
